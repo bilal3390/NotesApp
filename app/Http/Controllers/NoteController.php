@@ -16,45 +16,34 @@ class NoteController extends Controller
     {
         $this->middleware('auth:api');
     }
+
     public function index(){
 
-        return Note::all();
+        Note::allNote();
 
     }
 
     public function create(CreateNoteRequest $request){
 
-        $creating = new Note();
-
-        $creating->title = $request->input('title');
-
-        $creating->content = $request->input('content');
-
-        return $creating->save();
+        Note::createNote($request);
 
     }
 
     public function single(SingleNoteRequest $request){
 
-        return Note::where('id' , $request->input('id'))->first();
+        Note::singleNote($request);
 
     }
 
     public function update(UpdateNoteRequest $request){
 
-        $item = Note::where('id', $request->input('id'))->first();
-
-        $request['title'] = $request->input('title');
-
-        $request['content'] = $request->input('content');
-
-        return $item->update($request);
+        Note::updateNote($request);
 
     }
 
     public function delete(DeleteNoteRequest $request){
 
-        return Note::whereId($request->input('id'))->delete();
+        Note::deleteNote($request);
 
     }
 }
