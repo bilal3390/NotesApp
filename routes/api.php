@@ -33,3 +33,5 @@ Route::post('/create', [NoteController::class,'create']);
 Route::post('/single', [NoteController::class,'single']);
 Route::post('/update', [NoteController::class,'update']);
 Route::post('/delete', [NoteController::class,'delete']);
+
+//to check
