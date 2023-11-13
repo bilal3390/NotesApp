@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateNoteRequest;
+use App\Http\Requests\DeleteNoteRequest;
+use App\Http\Requests\SingleNoteRequest;
+use App\Http\Requests\UpdateNoteRequest;
 use Illuminate\Http\Request;
 use App\Models\Note;
 
@@ -18,7 +22,7 @@ class NoteController extends Controller
 
     }
 
-    public function create(Request $request){
+    public function create(CreateNoteRequest $request){
 
         $creating = new Note();
 
@@ -30,13 +34,13 @@ class NoteController extends Controller
 
     }
 
-    public function single(Request $request){
+    public function single(SingleNoteRequest $request){
 
         return Note::where('id' , $request->input('id'))->first();
 
     }
 
-    public function update(Request $request){
+    public function update(UpdateNoteRequest $request){
 
         $item = Note::where('id', $request->input('id'))->first();
 
@@ -48,7 +52,7 @@ class NoteController extends Controller
 
     }
 
-    public function delete(Request $request){
+    public function delete(DeleteNoteRequest $request){
 
         return Note::whereId($request->input('id'))->delete();
 
